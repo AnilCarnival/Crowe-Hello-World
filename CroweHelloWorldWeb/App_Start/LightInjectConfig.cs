@@ -43,12 +43,6 @@ namespace CroweHelloWorldWeb
             ////serviceRegistry.Register<ILogger, JsonL4NLogger>();
             serviceRegistry.RegisterInstance(typeof(ILogger), new JsonL4NLogger());
 
-            // Register default Hosting Environment Service
-            serviceRegistry.Register<IHostingEnvironmentService, ServerHostingEnvironmentService>();
-
-            // Register default File IO Service
-            serviceRegistry.Register<IFileIOService, TextFileIOService>();
-
             // Register default Data Service
             serviceRegistry.Register<IHelloWorldContentService, HelloWorldContentService>();
 

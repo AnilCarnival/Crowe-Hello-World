@@ -7,11 +7,6 @@ namespace CroweHelloWorldFoundation.Resources
     public class AppSettingsKeys
     {
         /// <summary>
-        ///     The application settings key for the HelloWorld file
-        /// </summary>
-        public const string HellowWorldFileName = "HellowWorldFile";
-
-        /// <summary>
         ///     The application settings key for the Hello World API URL
         /// </summary>
         public const string ApiUrlKey = "APIURL";

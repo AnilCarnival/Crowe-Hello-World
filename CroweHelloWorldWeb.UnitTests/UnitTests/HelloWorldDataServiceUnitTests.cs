@@ -18,15 +18,6 @@ namespace CroweHelloWorldWeb.Tests.UnitTests
     [TestFixture]
     public class HelloWorldDataServiceUnitTests
     {
-        /// <summary>
-        ///     The mocked application settings service
-        /// </summary>
-        private Mock<IAppSettings> appSettingsMock;
-
-        /// <summary>
-        ///     The mocked File IO service
-        /// </summary>
-        private Mock<IFileIOService> fileIOServiceMock;
 
         /// <summary>
         ///     The mocked Hello World Mapper
@@ -45,18 +36,14 @@ namespace CroweHelloWorldWeb.Tests.UnitTests
         public void InitTestSuite()
         {
             // Setup mocked dependencies
-            this.appSettingsMock = new Mock<IAppSettings>();
-            this.fileIOServiceMock = new Mock<IFileIOService>();
             this.helloWorldMapperMock = new Mock<IDataMapper>();
 
             // Create object to test
             this.helloWorldContentService = new HelloWorldContentService(
-                this.appSettingsMock.Object,
-                this.fileIOServiceMock.Object,
                 this.helloWorldMapperMock.Object);
         }
 
-        #region Get HelloWorldDataTests
+        
         /// <summary>
         ///     Tests the class's HelloWorldData method for success
         /// </summary>
@@ -64,16 +51,13 @@ namespace CroweHelloWorldWeb.Tests.UnitTests
         public void UnitTestHelloWorldDataServiceGetHelloWorldContentSuccess()
         {
             // Create return models for dependencies
-            const string DataFilePath = "test/path";
-            const string FileContents = "Hello World text";
-            var rawData = FileContents;
+            const string content = "Hello World!!!";
+            var rawData = content;
 
             // Create the expected result
             var expectedResult = GetTestHelloWorldContent(rawData);
 
             // Set up dependencies
-            this.appSettingsMock.Setup(m => m.Get(AppSettingsKeys.HellowWorldFileName)).Returns(DataFilePath);
-            this.fileIOServiceMock.Setup(m => m.ReadFile(DataFilePath)).Returns(FileContents);
             this.helloWorldMapperMock.Setup(m => m.GetHelloWorldContent(rawData)).Returns(expectedResult);
 
             // Call the method to test
@@ -84,60 +68,8 @@ namespace CroweHelloWorldWeb.Tests.UnitTests
             Assert.AreEqual(result.Content, expectedResult.Content);
         }
 
-        /// <summary>
-        ///     Tests the class's HelloWorldData method when the setting key is null
-        /// </summary>
-        [Test]
-        [ExpectedException(ExpectedException = typeof(SettingsPropertyNotFoundException), ExpectedMessage = ErrorCodes.HelloWorldFileSettingsKeyError)]
-        public void UnitTestHelloWorldDataServiceGetHelloWorldContentSettingKeyNull()
-        {
-            // Create return models for dependencies
-            const string DataFilePath = null;
 
-            // Set up dependencies
-            this.appSettingsMock.Setup(m => m.Get(AppSettingsKeys.HellowWorldFileName)).Returns(DataFilePath);
-
-            // Call the method to test
-            this.helloWorldContentService.GetHelloWorldContent();
-        }
-
-        /// <summary>
-        ///     Tests the class's HelloWorldData method when the setting key is an empty string
-        /// </summary>
-        [Test]
-        [ExpectedException(ExpectedException = typeof(SettingsPropertyNotFoundException), ExpectedMessage = ErrorCodes.HelloWorldFileSettingsKeyError)]
-        public void UnitTestHelloWorldDataServiceGetHelloWorldContentSettingKeyEmptyString()
-        {
-            // Create return models for dependencies
-            var dataFilePath = string.Empty;
-
-            // Set up dependencies
-            this.appSettingsMock.Setup(m => m.Get(AppSettingsKeys.HellowWorldFileName)).Returns(dataFilePath);
-
-            // Call the method to test
-            this.helloWorldContentService.GetHelloWorldContent();
-        }
-
-        /// <summary>
-        ///     Tests the class's HelloWorldData method for an IO Exception
-        /// </summary>
-        [Test]
-        [ExpectedException(ExpectedException = typeof(IOException))]
-        public void UnitTestHelloWorldDataServiceGetHelloWorldContentIOException()
-        {
-            // Create return models for dependencies
-            const string DataFilePath = "test/path";
-
-            // Set up dependencies
-            this.appSettingsMock.Setup(m => m.Get(AppSettingsKeys.HellowWorldFileName)).Returns(DataFilePath);
-            this.fileIOServiceMock.Setup(m => m.ReadFile(DataFilePath)).Throws(new IOException("Error!"));
-
-            // Call the method to test
-            this.helloWorldContentService.GetHelloWorldContent();
-        }
-        #endregion
-
-        #region Helper Methods
+        
         /// <summary>
         ///     Gets HellowWorldData
         /// </summary>
@@ -147,6 +79,6 @@ namespace CroweHelloWorldWeb.Tests.UnitTests
         {
             return new HellowWorldData { Content = content };
         }
-        #endregion
+        
     }
 }

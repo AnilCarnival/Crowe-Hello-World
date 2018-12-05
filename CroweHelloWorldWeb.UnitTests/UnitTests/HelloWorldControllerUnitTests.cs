@@ -59,33 +59,7 @@ namespace CroweHelloWorldWeb.Tests.UnitTests
             Assert.AreEqual(result.Content, expectedResult.Content);
         }
 
-        /// <summary>
-        ///     Tests the controller's get method for a SettingsPropertyNotFoundException
-        /// </summary>
-        [Test]
-        [ExpectedException(ExpectedException = typeof(SettingsPropertyNotFoundException))]
-        public void UnitTestHelloWorldDataControllerGetSettingsPropertyNotFoundException()
-        {
-            // Set up dependencies
-            this.dataServiceMock.Setup(m => m.GetHelloWorldContent()).Throws(new SettingsPropertyNotFoundException("Error!"));
-
-            // Call the method to test
-            this.helloWorldDataController.Get();
-        }
-
-        /// <summary>
-        ///     Tests the controller's get method for an IOException
-        /// </summary>
-        [Test]
-        [ExpectedException(ExpectedException = typeof(IOException))]
-        public void UnitTestHelloWorldDataControllerGetIOException()
-        {
-            // Set up dependencies
-            this.dataServiceMock.Setup(m => m.GetHelloWorldContent()).Throws(new IOException("Error!"));
-
-            // Call the method to test
-            this.helloWorldDataController.Get();
-        }
+      
         #endregion
 
         #region Helper Methods
@@ -97,7 +71,7 @@ namespace CroweHelloWorldWeb.Tests.UnitTests
         {
             return new HellowWorldData()
             {
-                Content = "Hello World!"
+                Content = "Hello World!!!"
             };
         }
         #endregion

@@ -83,7 +83,7 @@ namespace CroweHelloWorldWeb.Tests.UnitTests
         [Test]
         public void UnitTestHelloWorldConsoleAppRunNormalDataSuccess()
         {
-            const string Data = "Hello World!";
+            const string Data = "Hello World!!!";
 
             // Create return models for dependencies
             var helloWorldData = GetHelloWorldData(Data);
@@ -105,10 +105,10 @@ namespace CroweHelloWorldWeb.Tests.UnitTests
         [Test]
         public void UnitTestHelloWorldConsoleAppRunNullDataSuccess()
         {
-            const string Data = "Hello World!";
+            const string Data = null;
             HellowWorldData helloWorldData = GetHelloWorldData(Data);
             // Set up dependencies
-           // this.helloWorldWebServiceMock.Setup(m => m.GetHelloWorldContent()).Returns((helloWorldData)null);
+            this.helloWorldWebServiceMock.Setup(m => m.GetHelloWorldContent()).Returns(helloWorldData);
 
             // Call the method to test
             this.helloWorldConsoleApp.Run(null);
