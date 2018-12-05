@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CroweHelloWorldWeb</name>
+    </assembly>
+    <members>
+        <member name="T:CroweHelloWorldWeb.LightInjectConfig">
+            <summary>
+            Configures dependency injection via LightInject
+            </summary>
+        </member>
+        <member name="M:CroweHelloWorldWeb.LightInjectConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Registers main components
+            </summary>
+            <param name="config">Http Configuration</param>
+        </member>
+        <member name="M:CroweHelloWorldWeb.LightInjectConfig.RegisterServices(LightInject.IServiceRegistry)">
+            <summary>
+            Registers the dependency services to be injected
+            </summary>
+            <param name="serviceRegistry">The Service Registry</param>
+        </member>
+        <member name="T:CroweHelloWorldWeb.WebApiConfig">
+            <summary>
+            Sets up Web API (routing, etc)
+            </summary>
+        </member>
+        <member name="M:CroweHelloWorldWeb.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Registers and configures Web API
+            </summary>
+            <param name="config">Http Configuration</param>
+        </member>
+        <member name="T:CroweHelloWorldWeb.Controllers.HelloWorldController">
+            <summary>
+                API controller for getting and setting HelloWorld data value.
+            </summary>
+        </member>
+        <member name="F:CroweHelloWorldWeb.Controllers.HelloWorldController.dataService">
+            <summary>
+                The data service
+            </summary>
+        </member>
+        <member name="M:CroweHelloWorldWeb.Controllers.HelloWorldController.#ctor(CroweHelloWorldFoundation.Services.IHelloWorldContentService)">
+            <summary>
+                Initializes a new instance of the <see cref="T:CroweHelloWorldWeb.Controllers.HelloWorldController" /> class.
+            </summary>
+            <param name="dataService">The injected data service</param>
+        </member>
+        <member name="M:CroweHelloWorldWeb.Controllers.HelloWorldController.Get">
+            <summary>
+                HelloWorld data
+            </summary>
+            <returns>HelloWorld data model</returns>
+        </member>
+        <member name="T:CroweHelloWorldWeb.WebApiApplication">
+            <summary>
+            Starts the main Web Application
+            </summary>
+        </member>
+        <member name="M:CroweHelloWorldWeb.WebApiApplication.Application_Start">
+            <summary>
+            Starts the Web Application
+            </summary>
+        </member>
+    </members>
+</doc>
